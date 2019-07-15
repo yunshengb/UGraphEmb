@@ -85,11 +85,10 @@ class SiameseModelData(Data):
         cur_hit = 0
         for i, g in enumerate(gs):
             mg = ModelGraph(g, self.node_feat_encoder, self.graph_label_encoder)
-            if FLAGS.dataset_super_large:
-                perc = i / len(gs)
-                if cur_hit < len(hits) and abs(perc - hits[cur_hit]) <= 0.05:
-                    print('{} {}/{}={:.1%}'.format(tvt, i, len(gs), i / len(gs)))
-                    cur_hit += 1
+            perc = i / len(gs)
+            if cur_hit < len(hits) and abs(perc - hits[cur_hit]) <= 0.05:
+                print('{} {}/{}={:.1%}'.format(tvt, i, len(gs), i / len(gs)))
+                cur_hit += 1
             rtn.append(mg)
         return rtn
 
